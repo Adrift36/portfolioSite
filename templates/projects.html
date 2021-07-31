@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Projects</title>
+{% endblock head %}
+
+
+
+{% block body %}
+    <h1>All Projects</h1>
+
+    <hr>
+    <h2>Uplaod new project:</h2>
+    <form action='/projects' method='POST'>
+        Title: <input type='text' name='title' id='title'>
+        <br>
+        Date: <input type="date" name="date" id="date">
+        <br>
+        Content: <input type="text" name="content" id="content">
+        <br>
+        <input type='submit' value='Upload'>
+    </form>
+    <hr>
+
+    {% for project in projects %}
+        <h2>{{ project.title }}</h2>
+
+        {% if project.date %}
+            <h3>Date: {{ project.date }}</h3>
+        {% else %}
+            <h3>Date: n/a</h3>
+        {% endif %}
+        <p>{{ project.content }}</p>
+        <a href='/projects/edit/{{project.id}}'>Edit</a>
+        <a href='/projects/delete/{{project.id}}'>Delete</a>
+    {% endfor %}
+{% endblock body %}

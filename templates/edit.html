@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Projects</title>
+{% endblock head %}
+
+
+
+{% block body %}
+    <h1>Edit Project</h1>
+
+    <hr>
+    <h2>Edit:</h2>
+    <form action='/projects/edit/{{project.id}}' method='POST'>
+        Title: <input type='text' name='title' id='title' value="{{project.title}}">
+        <br>
+        Date: <input type="date" name="date" id="date" value="{{project.date}}">
+        <br>
+        Content: <input type="text" name="content" id="content" value="{{project.content}}">
+        <br>
+        <input type='submit' value='Save'>
+    </form>
+    <a href="/projects">Cancel</a>
+    <hr>
+{% endblock body %}
