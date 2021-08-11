@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Contact</title>
+{% endblock head %}
+
+
+{% block body %}
+    <h1>Contact me through the form or by email</h1>
+
+    <hr>
+        <form action='/contact' method="POST">
+            Name: <input type='text' name='name' id='name'>
+            <br>
+            Email: <input type="text" name="email" id="email">
+            <br>
+            Message: <input type="text" name="content" id="content">
+            <br>
+            <input type='submit' value='Send'>
+        </form>
+    <hr>
+{% endblock body %}
+
