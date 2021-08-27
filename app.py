@@ -7,14 +7,14 @@ import requests
 
 app = Flask(__name__)
 
-ENV = 'dev'
+ENV = 'prod'
 
 if ENV == 'dev':
     app.debug = True
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:Asettergh23@localhost/Projects'
 else:
     app.debug = False
-    app.config['SQLALCHEMY_DATABASE_URI'] = ''
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://axvhxvmwouzwzt:8ab42dc553010a27912f1b511431f3c44a85b9956bcca3c54ba05ba6cd806aa3@ec2-52-72-125-94.compute-1.amazonaws.com:5432/d8rul8ma8s48uu'
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
