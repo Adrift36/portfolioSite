@@ -6,17 +6,31 @@ from datetime import datetime
 import requests
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///projects.db'
+
+ENV = 'dev'
+
+if ENV == 'dev':
+    app.debug = True
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:Asettergh23@localhost/Projects'
+else:
+    app.debug = False
+    app.config['SQLALCHEMY_DATABASE_URI'] = ''
+
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
+
 class Project(db.Model):
+    __tablename__ = 'Projects'
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(100), nullable=False)
+    title = db.Column(db.String(300), nullable=False)
     content = db.Column(db.Text, nullable=False)
     date = db.Column(db.Text, nullable=False)
 
-    def __repr__(self):
-        return 'project ' + str(self.id)
+    def __init__(self, title, content, date):
+        self.title = title
+        self.content = content
+        self.date = date
 
 
 @app.route('/')
@@ -105,4 +119,4 @@ def bestmove(gameSequence): #temporary solution while I figure out minimax algor
 
 
 if __name__ == '__main__':
-    app.run(debug=True) 
+    app.run()
